@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="960" height="620">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#0d1529"/>
+    </linearGradient>
+    <linearGradient id="vpcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2744;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#111827;stop-opacity:0.6"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="620" fill="url(#bg)" rx="16"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#60a5fa">AWS Well-Architected Framework — Pillar 1: Operational Excellence</text>
+  <text x="480" y="60" text-anchor="middle" font-family="monospace" font-size="12" fill="#475569">Static Website · CloudFront · S3 · CloudWatch · SNS · Terraform</text>
+
+  <!-- ── USER ── -->
+  <rect x="30" y="240" width="110" height="80" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="85" y="273" text-anchor="middle" font-size="26">👤</text>
+  <text x="85" y="298" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">User</text>
+  <text x="85" y="313" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">Browser / Client</text>
+
+  <!-- Arrow: User → CF -->
+  <line x1="142" y1="280" x2="200" y2="280" stroke="#3b5bdb" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="170" y="273" text-anchor="middle" font-family="monospace" font-size="9" fill="#60a5fa">HTTPS</text>
+
+  <!-- ── CLOUDFRONT ── -->
+  <rect x="200" y="220" width="150" height="120" rx="12" fill="#1a2744" stroke="#2d4a8a" stroke-width="2"/>
+  <text x="275" y="255" text-anchor="middle" font-size="28">🌐</text>
+  <text x="275" y="278" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#60a5fa">CloudFront</text>
+  <text x="275" y="295" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">CDN Distribution</text>
+  <text x="275" y="310" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">HTTPS · Security Headers</text>
+  <text x="275" y="325" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">OAC · Logging Enabled</text>
+
+  <!-- Arrow: CF → S3 -->
+  <line x1="350" y1="280" x2="430" y2="280" stroke="#3b5bdb" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="390" y="273" text-anchor="middle" font-family="monospace" font-size="9" fill="#60a5fa">OAC SigV4</text>
+
+  <!-- ── AWS REGION BOX ── -->
+  <rect x="420" y="100" width="490" height="400" rx="14" fill="url(#vpcGrad)" stroke="#1f2d45" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="450" y="125" font-family="monospace" font-size="11" fill="#334155">AWS Region: us-east-1</text>
+
+  <!-- ── S3 WEBSITE BUCKET ── -->
+  <rect x="430" y="200" width="145" height="120" rx="12" fill="#111827" stroke="#065f46" stroke-width="2"/>
+  <text x="502" y="235" text-anchor="middle" font-size="26">🪣</text>
+  <text x="502" y="258" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#34d399">S3 Website</text>
+  <text x="502" y="275" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Versioning: ON</text>
+  <text x="502" y="290" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Encryption: AES256</text>
+  <text x="502" y="305" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Public Access: BLOCKED</text>
+
+  <!-- ── S3 LOGS BUCKET ── -->
+  <rect x="430" y="370" width="145" height="100" rx="12" fill="#111827" stroke="#92400e" stroke-width="2"/>
+  <text x="502" y="405" text-anchor="middle" font-size="22">📝</text>
+  <text x="502" y="428" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#fbbf24">S3 Logs Bucket</text>
+  <text x="502" y="445" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">CF + S3 Access Logs</text>
+  <text x="502" y="460" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">90-day lifecycle</text>
+
+  <!-- Arrow: CF → Logs -->
+  <line x1="275" y1="340" x2="275" y2="420" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="275" y1="420" x2="430" y2="420" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowOrange)"/>
+  <text x="340" y="413" text-anchor="middle" font-family="monospace" font-size="9" fill="#92400e">Access Logs</text>
+
+  <!-- Arrow: S3 → Logs -->
+  <line x1="502" y1="320" x2="502" y2="370" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowOrange)"/>
+
+  <!-- ── MONITORING BOX ── -->
+  <rect x="615" y="140" width="270" height="340" rx="14" fill="#0d1529" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="750" y="168" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#94a3b8">Monitoring Stack</text>
+
+  <!-- CloudWatch Dashboard -->
+  <rect x="630" y="180" width="235" height="75" rx="10" fill="#111827" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="747" y="208" text-anchor="middle" font-size="18">📊</text>
+  <text x="747" y="228" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#60a5fa">CloudWatch Dashboard</text>
+  <text x="747" y="244" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Requests · 4xx · 5xx · Bytes</text>
+
+  <!-- CloudWatch Alarms -->
+  <rect x="630" y="270" width="235" height="90" rx="10" fill="#111827" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="747" y="298" text-anchor="middle" font-size="18">🚨</text>
+  <text x="747" y="318" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#a78bfa">CloudWatch Alarms</text>
+  <text x="747" y="334" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">4xx Rate &gt; 5% → ALERT</text>
+  <text x="747" y="349" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">5xx Rate &gt; 1% → ALERT</text>
+
+  <!-- SNS Topic -->
+  <rect x="630" y="375" width="235" height="85" rx="10" fill="#111827" stroke="#b45309" stroke-width="1.5"/>
+  <text x="747" y="403" text-anchor="middle" font-size="18">🔔</text>
+  <text x="747" y="423" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#fbbf24">SNS Topic</text>
+  <text x="747" y="439" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Encrypted · Email Subscription</text>
+  <text x="747" y="454" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Immediate alert delivery</text>
+
+  <!-- Arrow: CF → CW -->
+  <line x1="350" y1="250" x2="615" y2="217" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+  <text x="490" y="228" text-anchor="middle" font-family="monospace" font-size="9" fill="#60a5fa">Metrics</text>
+
+  <!-- Arrow: CW Alarms → SNS -->
+  <line x1="747" y1="360" x2="747" y2="375" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+
+  <!-- Arrow: SNS → Email (outside) -->
+  <line x1="865" y1="417" x2="920" y2="417" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <rect x="890" y="400" width="60" height="34" rx="8" fill="#1c1008" stroke="#92400e" stroke-width="1"/>
+  <text x="920" y="422" text-anchor="middle" font-family="monospace" font-size="10" fill="#fbbf24">📧 Email</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3b5bdb"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <!-- Terraform badge -->
+  <rect x="30" y="520" width="130" height="30" rx="6" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1"/>
+  <text x="95" y="540" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">🏗️ Managed by Terraform</text>
+
+  <!-- WAF Pillar badge -->
+  <rect x="175" y="520" width="200" height="30" rx="6" fill="#1a1a2e" stroke="#2d4a8a" stroke-width="1"/>
+  <text x="275" y="540" text-anchor="middle" font-family="monospace" font-size="10" fill="#60a5fa">📐 Pillar 1: Operational Excellence</text>
+
+  <!-- Legend -->
+  <rect x="390" y="510" width="540" height="50" rx="8" fill="#0d1117" stroke="#1f2d45" stroke-width="1"/>
+  <text x="410" y="528" font-family="monospace" font-size="9" fill="#475569">Legend:</text>
+  <line x1="460" y1="525" x2="490" y2="525" stroke="#3b5bdb" stroke-width="2"/>
+  <text x="495" y="529" font-family="monospace" font-size="9" fill="#94a3b8">Request path</text>
+  <line x1="580" y1="525" x2="610" y2="525" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="615" y="529" font-family="monospace" font-size="9" fill="#94a3b8">Log delivery</text>
+  <line x1="690" y1="525" x2="720" y2="525" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="725" y="529" font-family="monospace" font-size="9" fill="#94a3b8">Metrics</text>
+  <line x1="460" y1="545" x2="490" y2="545" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="495" y="549" font-family="monospace" font-size="9" fill="#94a3b8">Alarm trigger</text>
+</svg>
